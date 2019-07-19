@@ -1,6 +1,8 @@
 # flutter_yatch_booking
 
-A new Flutter project.
+Flutter good looking yatch booking sample app.</Br>
+This sample is based on [Yacht-Booking-Service-Application-Payment-Flow](https://dribbble.com/shots/5964990-Yacht-Booking-Service-Application-Payment-Flow/attachments) designed by [RonDesignLab](https://dribbble.com/RonDesignLab)
+<img src="https://cdn.dribbble.com/users/834691/screenshots/5964990/yacht.png"  /> 
 
 ## Getting Started
 
@@ -14,5 +16,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-# flutter_yatch_booking
-# flutter_yatch_booking
