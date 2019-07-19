@@ -63,6 +63,7 @@ class _YatchDetailState extends State<YatchDetail> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(height: 50,),
                   Text(
                     'Atlantida',
                     style: headerTextStyle,
@@ -99,7 +100,7 @@ class _YatchDetailState extends State<YatchDetail> {
                   //   style: TextStyle(color: Colors.white, fontSize: 18),
                   // ),
                   SizedBox(
-                    height: 100,
+                    height: 70,
                   ),
                   _rotatedBox('Motor'),
                   SizedBox(
@@ -116,11 +117,12 @@ class _YatchDetailState extends State<YatchDetail> {
                   flex: 1,
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),
+                    margin: EdgeInsets.only(top: 50),
                     width: 180,
                     alignment: FractionalOffset.centerRight,
                     height: 520,
                     child: RotatedBox(
-                      quarterTurns: 1,
+                      quarterTurns: 4,
                       child: Image.asset(
                         'assets/image/yatch_1.png',
                         fit: BoxFit.contain,
@@ -130,7 +132,7 @@ class _YatchDetailState extends State<YatchDetail> {
             ],
           ),
           SizedBox(
-            height: 100,
+            height: 50,
           ),
           _bottomButton()
         ],
@@ -184,7 +186,7 @@ class _YatchDetailState extends State<YatchDetail> {
       child: Container(
         padding: EdgeInsets.only(left: 20, top: 10, right: 10, bottom: 10),
         margin: EdgeInsets.only(left: 0, top: 10, right: 10, bottom: 10),
-        height: 70,
+        height: 60,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), color: Color(0xff3b3d41)),
@@ -194,14 +196,14 @@ class _YatchDetailState extends State<YatchDetail> {
             Text(
               'Rent now',
               style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                  TextStyle(color: Colors.white,fontSize: 25, fontWeight: FontWeight.w500),
             ),
             Container(
                 // padding: EdgeInsets.all(5),
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(15),
                     color: Colors.white),
                 child: Icon(
                   IconData(

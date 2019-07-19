@@ -98,7 +98,7 @@ class _CheckoutState extends State<Checkout> {
                 width: 2,
                 color: Colors.grey,
               ),
-              
+                 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -138,6 +138,9 @@ class _CheckoutState extends State<Checkout> {
          padding: EdgeInsets.all(20),
          margin: EdgeInsets.symmetric(vertical: 30),
          decoration: BoxDecoration(
+           boxShadow: <BoxShadow>[
+        BoxShadow(
+            color: Color(0xffd1d1e1), blurRadius: 10, offset: Offset(0, 10),)],
            borderRadius: BorderRadius.circular(20),
            color: Color(0xff1a5ddd),
          ),
@@ -147,7 +150,13 @@ class _CheckoutState extends State<Checkout> {
            Text('**** 2019',style: TextStyle(color: Colors.white),),
            SizedBox(height: 70,),
            Text('\$23 890',style: TextStyle(color: Colors.white,fontSize: 25),),
-           Text('Platinum',style: TextStyle(color: Colors.white54,fontSize: 18),),
+           Row(
+             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             children: <Widget>[
+            Text('Platinum',style: TextStyle(color: Colors.white54,fontSize: 18),),
+            Image.asset('assets/image/masterCardLogo.png',height:25)
+           ],),
+           
          ],),
        ),
        SizedBox(width: 20,),
@@ -157,6 +166,7 @@ class _CheckoutState extends State<Checkout> {
          padding: EdgeInsets.all(20),
          margin: EdgeInsets.symmetric(vertical: 30),
          decoration: BoxDecoration(
+           
            borderRadius: BorderRadius.circular(20),
            color: Color(0xfff5f3fb),
          ),
@@ -169,10 +179,9 @@ class _CheckoutState extends State<Checkout> {
            Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: <Widget>[
-             SizedBox(width: 20,),
-           Text('Debit',style: TextStyle(color: Colors.black,fontSize: 15),),           
-           Text('visa',style: TextStyle(color: Colors.blue,fontSize: 18),),           
-             SizedBox(width: 20,),
+            Text('Platinum',style: TextStyle(color: Colors.black,fontSize: 15),),
+            Image.asset('assets/image/visaCardLogo.png',height:15),
+          
            ],)
          ],)
        )
@@ -185,7 +194,7 @@ class _CheckoutState extends State<Checkout> {
       child: Container(
         padding: EdgeInsets.only(left: 20, top: 10, right: 10, bottom: 10),
         margin: EdgeInsets.only(left: 0, top: 70, right: 10, bottom: 10),
-        height: 50,
+        height: 60,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), color: Color(0xff3b3d41)),
@@ -197,12 +206,25 @@ class _CheckoutState extends State<Checkout> {
               style:
                   TextStyle(color: Colors.white, fontSize: 25),
             ),
+             Container(
+                // padding: EdgeInsets.all(5),
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white),
+                child: Icon(
+                  IconData(
+                    0xeab5,
+                    fontFamily: 'icofont',
+                  ),
+                  color: Colors.black,
+                ))
             
           ],
         ),
       ),
       onTap: ()=>{}
-  
     );
   }
 }

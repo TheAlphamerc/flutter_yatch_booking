@@ -55,6 +55,8 @@ flutter:
    - assets/image/yatch_side_4.jpg
    - assets/image/yatch_side_5.jpg
    - assets/image/yatch_side_6.jpg
+   - assets/image/visaCardLogo.png
+   - assets/image/masterCardLogo.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
