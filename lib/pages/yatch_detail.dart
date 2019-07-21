@@ -139,7 +139,7 @@ class _YatchDetailState extends State<YatchDetail> {
           SizedBox(
             height: 50,
           ),
-          SubmitButton(buttonText: 'Pay now',navigationString: 'checkout/${widget.yatch.id}',)
+          SubmitButton(buttonText: 'Pay now',navigationString: 'checkout/${widget.yatch.id}',navToBack: false,)
         
         ],
       ),

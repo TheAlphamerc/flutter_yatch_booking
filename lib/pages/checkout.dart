@@ -185,7 +185,7 @@ class _CheckoutState extends State<Checkout> with TickerProviderStateMixin {
           ),
           _middleSection(),
           SizedBox(height: 60,),
-          SubmitButton(buttonText: 'Rent now',)
+          SubmitButton(buttonText: 'Rent now',navToBack: true,)
         ],
       ),
     );

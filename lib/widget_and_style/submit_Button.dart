@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class SubmitButton extends  StatelessWidget {
   final String buttonText;
   final String navigationString;
-  SubmitButton({this.buttonText,this.navigationString});
+  final bool navToBack;
+  SubmitButton({this.buttonText,this.navigationString,this.navToBack});
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -32,9 +33,12 @@ class SubmitButton extends  StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.white),
-                child: Icon(
+                child: Icon( navToBack ?
                   IconData(
                     0xeab5,
+                    fontFamily: 'icofont',
+                  ) : IconData(
+                    0xeaa0,
                     fontFamily: 'icofont',
                   ),
                   color: Colors.black,
@@ -43,7 +47,11 @@ class SubmitButton extends  StatelessWidget {
         ),
       ),
       onTap: ()=>{
-         if(navigationString != null){
+        if(navToBack){
+          Navigator.pop(context)
+          
+        }
+         else if(navigationString != null){
              Navigator.pushNamed(context, navigationString)
       }
       }
