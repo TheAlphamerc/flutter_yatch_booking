@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_yatch_booking/model/yatch.dart';
+import 'package:flutter_yatch_booking/widget_and_style/submit_Button.dart';
 import 'package:flutter_yatch_booking/widget_and_style/text_style.dart';
 
 class YatchDetail extends StatefulWidget {
+  final Yatch yatch;
+  YatchDetail({this.yatch});
+
   @override
   _YatchDetailState createState() => _YatchDetailState();
 }
@@ -65,7 +70,7 @@ class _YatchDetailState extends State<YatchDetail> {
                 children: <Widget>[
                   SizedBox(height: 50,),
                   Text(
-                    'Atlantida',
+                    widget.yatch.name,
                     style: headerTextStyle,
                   ),
                   Text(
@@ -80,7 +85,7 @@ class _YatchDetailState extends State<YatchDetail> {
                         style: DefaultTextStyle.of(context).style,
                         children: <TextSpan>[
                           TextSpan(
-                              text: '\$1000',
+                              text: '\$${widget.yatch.price}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -102,15 +107,15 @@ class _YatchDetailState extends State<YatchDetail> {
                   SizedBox(
                     height: 70,
                   ),
-                  _rotatedBox('Motor'),
+                  _rotatedBox('Length',widget.yatch.lenght),
                   SizedBox(
                     height: 20,
                   ),
-                  _rotatedBox('Sailing'),
+                  _rotatedBox('Width',widget.yatch.height),
                   SizedBox(
                     height: 20,
                   ),
-                  _rotatedBox('Motor-Sailing'),
+                  _rotatedBox('Draft',widget.yatch.draft),
                 ],
               ),
               Expanded(
@@ -124,7 +129,7 @@ class _YatchDetailState extends State<YatchDetail> {
                     child: RotatedBox(
                       quarterTurns: 4,
                       child: Image.asset(
-                        'assets/image/yatch_1.png',
+                        widget.yatch.detailImage,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -134,13 +139,14 @@ class _YatchDetailState extends State<YatchDetail> {
           SizedBox(
             height: 50,
           ),
-          _bottomButton()
+          SubmitButton(buttonText: 'Pay now',navigationString: 'checkout/${widget.yatch.id}',)
+        
         ],
       ),
     );
   }
 
-  Widget _rotatedBox(String text) {
+  Widget _rotatedBox(String text,String length) {
     return Container(
       child: Container(
         width: 120,
@@ -156,7 +162,7 @@ class _YatchDetailState extends State<YatchDetail> {
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
                     TextSpan(
-                        text: '74',
+                        text: length,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -178,45 +184,6 @@ class _YatchDetailState extends State<YatchDetail> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _bottomButton() {
-    return GestureDetector(
-      child: Container(
-        padding: EdgeInsets.only(left: 20, top: 10, right: 10, bottom: 10),
-        margin: EdgeInsets.only(left: 0, top: 10, right: 10, bottom: 10),
-        height: 60,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: Color(0xff3b3d41)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              'Rent now',
-              style:
-                  TextStyle(color: Colors.white,fontSize: 25, fontWeight: FontWeight.w500),
-            ),
-            Container(
-                // padding: EdgeInsets.all(5),
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white),
-                child: Icon(
-                  IconData(
-                    0xeab5,
-                    fontFamily: 'icofont',
-                  ),
-                  color: Colors.black,
-                ))
-          ],
-        ),
-      ),
-      onTap: ()=>
-        Navigator.of(context).pushNamed('/checkout')
     );
   }
 }

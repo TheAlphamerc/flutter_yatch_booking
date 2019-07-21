@@ -1,30 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_yatch_booking/scopedModel/connectedModel.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class HomePageBody extends StatefulWidget {
+  final YatchModel yatchModel;
+  
+  HomePageBody(this.yatchModel);
   @override
   _HomePageBodyState createState() => _HomePageBodyState();
 }
 
 class _HomePageBodyState extends State<HomePageBody> {
   @override
+ 
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width - 100),
-              width: 100,
-              color: Color(0xfff5f3fb),
-            )
-          ],
-        ),
-        _body()
-      ],
-    ));
+    return ScopedModelDescendant(
+        builder: (BuildContext context, Widget child, YatchModel model) {
+      return Scaffold(
+          body: Stack(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width - 100),
+                width: 100,
+                color: Color(0xfff5f3fb),
+              )
+            ],
+          ),
+          _body()
+        ],
+      ));
+    });
   }
 
   Widget _body() {
@@ -42,7 +52,7 @@ class _HomePageBodyState extends State<HomePageBody> {
               ),
               Container(
                 padding: EdgeInsets.only(right: 35),
-                child: Icon(IconData(0xef0a,fontFamily: 'icofont')),
+                child: Icon(IconData(0xef0a, fontFamily: 'icofont')),
               ),
             ],
           ),
@@ -58,7 +68,7 @@ class _HomePageBodyState extends State<HomePageBody> {
             ),
             subtitle: Text(
               'Charters',
-              style: TextStyle(fontSize: 25,fontFamily: 'OpenSans'),
+              style: TextStyle(fontSize: 25, fontFamily: 'OpenSans'),
             ),
           ),
           SizedBox(
@@ -97,24 +107,29 @@ class _HomePageBodyState extends State<HomePageBody> {
                         aspectRatio: 16 / 9,
                         enlargeCenterPage: true,
                         scrollDirection: Axis.horizontal,
-                        items: [1, 2, 3,4,5].map((i) {
+                        items: List.generate(widget.yatchModel.allYatch.length,((i) {
                           return Builder(
                             builder: (BuildContext context) {
                               return GestureDetector(
                                 child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                  // decoration: BoxDecoration(color: Colors.amber),
-                                  child: i == 3 || i == 2? _slideBox(
-                                      'assets/image/yatch_side_$i.png', '$i')
-                                      : _slideBox(
-                                      'assets/image/yatch_side_$i.jpg', '$i')),
-                                      onTap: (){
-                                        Navigator.pushNamed(context, '/detail');
-                                      },);
+                                    width: MediaQuery.of(context).size.width,
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 5.0),
+                                    // decoration: BoxDecoration(color: Colors.amber),
+                                    child:
+                                        _slideBox(
+                                            widget.yatchModel.allYatch[i].image,
+                                            widget.yatchModel.allYatch[i].price,
+                                            widget.yatchModel.allYatch[i].name),),
+                                       
+                                onTap: () 
+                                {
+                                  Navigator.pushNamed(context, 'detail/${i+1}');
+                                },
+                              );
                             },
                           );
-                        }).toList(),
+                        })).toList(),
                       )))
             ],
           ),
@@ -131,14 +146,13 @@ class _HomePageBodyState extends State<HomePageBody> {
               scrollDirection: Axis.vertical,
               children: <Widget>[
                 _popularYatch(
-                    'assets/image/yatch_side_2.png', 'Oceana Yatch', " 4,5"),
+                    'assets/image/yatch_side_2.png', 'Oceana Yatch', " 4.5"),
                 _popularYatch(
-                    'assets/image/yatch_side_1.jpg', 'Ardena Yatch', " 3,2"),
-                 _popularYatch(
-                    'assets/image/yatch_side_2.png', 'Oceana Yatch', " 4,5"),
+                    'assets/image/yatch_side_1.png', 'Ardena Yatch', " 3.2"),
                 _popularYatch(
-                    'assets/image/yatch_side_4.jpg', 'Ardena Yatch', " 3,2"),
-                    
+                    'assets/image/yatch_side_2.png', 'Oceana Yatch', " 4.5"),
+                _popularYatch(
+                    'assets/image/yatch_side_4.png', 'Ardena Yatch', " 3.2"),
               ],
             ),
           )),
@@ -154,11 +168,14 @@ class _HomePageBodyState extends State<HomePageBody> {
   Widget _rotatedBox(String text) {
     return RotatedBox(
       quarterTurns: 3,
-      child: Text(text),
+      child: Text(
+        text,
+        style: TextStyle(fontWeight: FontWeight.w600),
+      ),
     );
   }
 
-  Widget _slideBox(String img, String rupee) {
+  Widget _slideBox(String img, String rupee,String name) {
     return Container(
       margin: EdgeInsets.only(right: 5, top: 10, bottom: 20),
       padding: EdgeInsets.only(top: 20, left: 0, bottom: 20),
@@ -203,7 +220,7 @@ class _HomePageBodyState extends State<HomePageBody> {
           ListTile(
             contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
             title: Text(
-              'Atlantica',
+              name,
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             subtitle: Text(
